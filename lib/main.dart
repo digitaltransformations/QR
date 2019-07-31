@@ -71,36 +71,10 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
+      body: new Container(
+         
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
@@ -108,4 +82,202 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+
+
+
+  Future<String> _showDiagnosisDialog(BuildContext context) async {
+    String complain = '';
+    String diagnosis = '';
+    return showDialog<String>(
+      context: context,
+      barrierDismissible: false,
+      // dialog is dismissible with a tap on the barrier
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'إضافه تشخيص',
+            textAlign: TextAlign.end,
+            style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+          ),
+          content: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: new Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          DropdownButton<String>(
+                              style: new TextStyle(
+                                  fontSize: 20.0, color: Colors.black),
+
+                              hint: Text(
+                                "شيسب",
+                                style: new TextStyle(
+                                    fontSize: 18.0, color: Colors.black),
+                              ),
+                              onChanged: (newVal) {
+                               // hospitalTitle = newVal;
+                                this.setState(() {});
+                              }),
+                          new Container(
+                            padding: EdgeInsets.all(10.0),
+                          ),
+                          new Text(" : المستشفى ",
+                              style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue)),
+                        ]),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    SizedBox(
+                      width: 30.0,
+                    ),
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          DropdownButton<String>(
+                              style: new TextStyle(
+                                  fontSize: 20.0, color: Colors.black),
+
+                              hint: Text(
+                                "الاسم",
+                                style: new TextStyle(
+                                    fontSize: 18.0, color: Colors.black),
+                              ),
+                              onChanged: (newVal) {
+                                //clinicTitle = newVal;
+                                this.setState(() {});
+                              }),
+                          new Container(
+                            padding: EdgeInsets.only(right: 20.0),
+                          ),
+                          new Text(" : العياده ",
+                              style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue)),
+                        ]),
+                  ],
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          new Container(
+                            padding: EdgeInsets.only(right: 20.0),
+                          ),
+                          new GestureDetector(
+                            child: Row(
+                              children: <Widget>[
+                                new Text("jkkj",
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87)),
+                                SizedBox(
+                                  width: 15.0,
+                                ),
+                                new Text(":",
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.blue)),
+                                SizedBox(
+                                  width: 0.0,
+                                ),
+                                new Icon(
+                                  Icons.calendar_today,
+                                  color: Colors.blue,
+                                ),
+                                new Text(" تاريخ التحويل ",
+                                    style: TextStyle(
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.blue)),
+                              ],
+                            ),
+                            onTap: () {
+
+                            },
+                          ),
+                        ]),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Container(
+                  width: 150.0,
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Container(
+                      padding: EdgeInsets.all(9.0),
+                      color: Color.fromRGBO(213, 223, 237, 1),
+                      child: TextField(
+                        //Color.fromRGBO(213, 223, 237, 1),
+
+//                    maxLines : 7 ,
+                        textAlign: TextAlign.right,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'قم بإضافه ملاحظاتك',
+                        ),
+                      ),
+                    )),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              color: Colors.blue,
+              shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                      color: Colors.blue, width: 1, style: BorderStyle.solid),
+                  borderRadius: BorderRadius.circular(50)),
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.check,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    'تأكيد',
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop(complain);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
 }
